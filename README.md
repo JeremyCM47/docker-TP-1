@@ -48,21 +48,21 @@ Récupérer l'image nginx et vérifier sa présence en local
 $ docker pull nginx
 
 $ docker image ls
-REPOSITORY       TAG          IMAGE ID       CREATED         SIZE
-nginx            latest       4146b18ae794   6 days ago     65.7MB
+REPOSITORY    TAG       IMAGE ID       CREATED         SIZE
+nginx         latest    904b8cb13b93   3 weeks ago     142MB
 ```
 
 La documentation de l'image nginx officielle est disponible sur le Docker Hub : https://hub.docker.com/_/nginx
 
 Créer un conteneur à partir de l'image nginx et servir le fichier html créé
 ```bash
-$ docker run --name my_nginx -p 8080:80 -v $PWD/html:/usr/share/nginx/html -d nginx
+$ docker run --name my_nginx -p 8080:80 -v index.html -d nginx
 ```
 Explications concernant la commande précédente :
 - `docker run` - Permet de démarrer un conteneur à partir d'une image. L'image utilisée est le dernier paramètre de la commande ici `nginx`
 - `--name` - Permet de nommer votre conteneur pour le retrouver plus facilement. Ici votre conteneur s'appelle `my_nginx`
 - `-p 8080:80` - Connecte le port 8080 de votre local avec le port 80 du conteneur
-- `-v <PATH_LOCAL>:<PATH_CONTAINER>` - Crée un montage des fichiers présent dans <PATH_LOCAL> vers <PATH_CONTAINER>
+- `-v ` - Crée un montage des fichiers présent dans le dossier courant vers <PATH_CONTAINER>
 - `-d` - Exécute le conteneur en background (mode detach)
 
 Ouvrez firefox à l'url localhost:8080. Votre page HTML est servie !
